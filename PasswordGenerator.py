@@ -11,43 +11,61 @@ import string
 
 
 # Welcome message
-print("PASSWORD GENERATOR")
-print("------------------")
+print("PASSWORD GENERATOR"
+      "\n------------------")
 print()
-print("This password generator will create a password between")
-print("10 and 20 characters in length, using digits (0 to 9),")
-print("letters (A to z), and special characters (%, $, etc.).")
+print("This password generator will create a password between "
+      "10 and 20 characters in length, using digits (0 to 9), "
+      "letters (A to z), and special characters (%, $, etc.).")
 print()
 
-print("Enter the MINIMUM number of the following that you need")
-print("in your password.")
-print("NOTE: Minimum numbers must be greater than or equal to 0.")
+# Ask for user input
+print("Please enter the MINIMUM number of the following that you need "
+      "in your password. NOTE: Minimum values must be numbers greater "
+      "than or equal to 0.")
 print()
-numOfLetters=int(input("\tLetters: "))
-while numOfLetters < 0:
+
+okay = False
+while not okay:
+    done = False
+    while not done:
+        try:
+            numOfLetters=int(input("* Minimum number of letters: "))
+            while numOfLetters < 0:
+                print("ERROR: You entered a number less than 0. Please try again.")
+                numOfLetters=int(input("* Minimum number of letters: "))
+            done=True
+        except ValueError:
+            print("ERROR: You did not enter a number. Please try again.")
     print()
-    print("ERROR: \tThe minimum number of letters must be greater")
-    print("\tthan or equal to 0.")
+    done=False
+    while not done:
+        try:
+            numOfDigits=int(input("* Minimum number of digits: "))
+            while numOfDigits < 0:
+                print("ERROR: You entered a number less than 0. Please try again.")
+                numOfDigits=int(input("* Minimum number of digits: "))
+            done=True
+        except ValueError:
+            print("ERROR: You did not enter a number. Please try again")
     print()
-    numOfLetters=int(input("\tPlease enter the minimum number of letters: "))
-print()
-numOfDigits=int(input("\tDigits: "))
-while numOfDigits < 0:
+    done=False
+    while not done:
+        try:
+            numOfSpecial=int(input("* Minimum number of special characters: "))
+            while numOfSpecial < 0:
+                print("ERROR: You entered a number less than 0. Please try again.")
+                numOfSpecial=int(input("* Minimum number of special characters: "))
+            done=True
+        except ValueError:
+            print("ERROR: You did not enter a number. Please try again")
     print()
-    print("ERROR: \tThe minimum number of digits must be greater")
-    print("\tthan or equal to 0.")
+    if (numOfLetters+numOfDigits+numOfSpecial > 20):
+        print("ERROR: The sum of the minimum number of letters, digits, and special characters "
+              "must be less than or equal to 20. Please try again.")
+    else:
+        okay=True
     print()
-    numOfDigits=int(input("\tPlease enter the minimum number of digits: "))
-print()
-numOfSpecial=int(input("\tSpecial characters (ex: $, %, &): "))
-while numOfSpecial < 0:
-    print()
-    print("ERROR: \tThe minimum number of special characters must")
-    print("be greater than or equal to 0.")
-    print()
-    numOfSpecial=int(input("\tPlease enter the minimum number of special characters: "))
-    
-print()
 
 
 # Create password
